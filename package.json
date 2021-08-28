@@ -1,6 +1,6 @@
 {
   "name": "@giangmv/vue-generator",
-  "version": "0.1.6",
+  "version": "0.1.9",
   "description": "Generator apps built with Nuxt, Vue or Vuetify for any API documented",
   "files": [
     "*.md",
@@ -71,7 +71,7 @@
     "src/**/*.js": "npm run lint"
   },
   "bin": {
-    "generate-api-platform-client": "lib/index.js"
+    "vue-generator": "./lib/index.js"
   },
   "publishConfig": {
     "access": "public"

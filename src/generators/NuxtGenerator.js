@@ -43,8 +43,8 @@ export default class NuxtGenerator extends BaseVueGenerator {
     );
   }
 
-  generateFiles(api, resource, dir, params) {
-    const context = super.getContextForResource(resource, params);
+  generateFiles(api, resource, dir, params, module) {
+    const context = super.getContextForResource(resource, params, module);
     const lc = context.lc;
 
     [

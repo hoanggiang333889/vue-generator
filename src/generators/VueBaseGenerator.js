@@ -101,66 +101,334 @@ export default class extends BaseGenerator {
     });
   }
 
-  getContextForResource(resource, params) {
-    const lc = resource.title.toLowerCase();
-    const titleUcFirst =
-      resource.title.charAt(0).toUpperCase() + resource.title.slice(1);
+  getContextForResource(resource, params, module) {
+    const lc = module.toLowerCase();
+    const titleUcFirst = module.charAt(0).toUpperCase() + module.slice(1);
 
-    const formFields = this.buildFields(resource.writableFields);
+    // const formFields = this.buildFields(resource.writableFields);
 
-    const dateTypes = ["time", "date", "dateTime"];
-    const formContainsDate = formFields.some((e) => dateTypes.includes(e.type));
+    // const dateTypes = ["time", "date", "dateTime"];
+    // const formContainsDate = formFields.some((e) => dateTypes.includes(e.type));
 
-    const fields = this.buildFields(resource.readableFields);
-    const listContainsDate = fields.some((e) => dateTypes.includes(e.type));
+    // const fields = this.buildFields(resource.readableFields);
+    // const listContainsDate = fields.some((e) => dateTypes.includes(e.type));
 
-    const parameters = [];
-    params.forEach((p) => {
-      const param = fields.find((field) => field.name === p.variable);
-      if (!param) {
-        p.name = p.variable;
-        parameters.push(p);
-      } else {
-        param.multiple = p.multiple;
-        parameters.push(param);
-      }
-    });
+    // const parameters = [];
+    // params.forEach((p) => {
+    //   const param = fields.find((field) => field.name === p.variable);
+    //   if (!param) {
+    //     p.name = p.variable;
+    //     parameters.push(p);
+    //   } else {
+    //     param.multiple = p.multiple;
+    //     parameters.push(param);
+    //   }
+    // });
 
-    const paramsHaveRefs = parameters.some(
-      (e) => e.type === "text" && e.reference
-    );
+    // const paramsHaveRefs = parameters.some(
+    //   (e) => e.type === "text" && e.reference
+    // );
 
-    const labels = this.commonLabelTexts();
+    // const labels = this.commonLabelTexts();
 
+    // return {
+    //   title: resource.title,
+    //   name: resource.name,
+    //   lc,
+    //   uc: resource.title.toUpperCase(),
+    //   fields,
+    //   dateTypes,
+    //   listContainsDate,
+    //   paramsHaveRefs,
+    //   parameters,
+    //   formFields,
+    //   formContainsDate,
+    //   hydraPrefix: this.hydraPrefix,
+    //   titleUcFirst,
+    //   labels,
+    // };
     return {
-      title: resource.title,
-      name: resource.name,
-      lc,
-      uc: resource.title.toUpperCase(),
-      fields,
-      dateTypes,
-      listContainsDate,
-      paramsHaveRefs,
-      parameters,
-      formFields,
-      formContainsDate,
-      hydraPrefix: this.hydraPrefix,
-      titleUcFirst,
-      labels,
+      title: module,
+      name: module,
+      lc: lc,
+      uc: module.toUpperCase(),
+      fields: [
+        {
+          name: 'isbn',
+          id: 'http://schema.org/isbn',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: false,
+          description: 'The ISBN of the book.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          index: 1,
+          total: 6,
+          isFirst: true,
+          isLast: false
+        },
+        {
+          name: 'title',
+          id: 'http://schema.org/name',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'The title of the book.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          multiple: undefined,
+          index: 2,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        },
+        {
+          name: 'description',
+          id: 'http://schema.org/description',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'A description of the item.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          index: 3,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        },
+        {
+          name: 'author',
+          id: 'http://schema.org/author',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          multiple: undefined,
+          index: 4,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        },
+        {
+          name: 'publicationDate',
+          id: 'http://schema.org/dateCreated',
+          range: 'http://www.w3.org/2001/XMLSchema#dateTime',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'The date on which the CreativeWork was created or the item was added to a DataFeed.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'dateTime',
+          index: 5,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        },
+        {
+          name: 'reviews',
+          id: 'http://schema.org/reviews',
+          range: 'http://schema.org/Review',
+          reference: null,
+          embedded: ['Resource'],
+          required: false,
+          description: "The book's reviews.",
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          index: 6,
+          total: 6,
+          isFirst: false,
+          isLast: true
+        }
+      ],
+      dateTypes: [ 'time', 'date', 'dateTime' ],
+      listContainsDate: true,
+      paramsHaveRefs: false,
+      parameters: [
+        {
+          name: 'title',
+          id: 'http://schema.org/name',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'The title of the book.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          multiple: undefined,
+          index: 2,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        },
+        {
+          name: 'author',
+          id: 'http://schema.org/author',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          multiple: undefined,
+          index: 4,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        }
+      ],
+      formFields: [
+        {
+          name: 'isbn',
+          id: 'http://schema.org/isbn',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: false,
+          description: 'The ISBN of the book.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          index: 1,
+          total: 6,
+          isFirst: true,
+          isLast: false
+        },
+        {
+          name: 'title',
+          id: 'http://schema.org/name',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'The title of the book.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          index: 2,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        },
+        {
+          name: 'description',
+          id: 'http://schema.org/description',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'A description of the item.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          index: 3,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        },
+        {
+          name: 'author',
+          id: 'http://schema.org/author',
+          range: 'http://www.w3.org/2001/XMLSchema#string',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          index: 4,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        },
+        {
+          name: 'publicationDate',
+          id: 'http://schema.org/dateCreated',
+          range: 'http://www.w3.org/2001/XMLSchema#dateTime',
+          reference: null,
+          embedded: null,
+          required: true,
+          description: 'The date on which the CreativeWork was created or the item was added to a DataFeed.',
+          maxCardinality: null,
+          deprecated: false,
+          type: 'dateTime',
+          index: 5,
+          total: 6,
+          isFirst: false,
+          isLast: false
+        },
+        {
+          name: 'reviews',
+          id: 'http://schema.org/reviews',
+          range: 'http://schema.org/Review',
+          reference: null,
+          embedded: ['Resource'],
+          required: false,
+          description: "The book's reviews.",
+          maxCardinality: null,
+          deprecated: false,
+          type: 'text',
+          index: 6,
+          total: 6,
+          isFirst: false,
+          isLast: true
+        }
+      ],
+      formContainsDate: true,
+      hydraPrefix: 'hydra:',
+      titleUcFirst: titleUcFirst,
+      labels: {
+        submit: 'Submit',
+        reset: 'Reset',
+        delete: 'Delete',
+        edit: 'Edit',
+        confirmDelete: 'Are you sure you want to delete this item?',
+        noresults: 'No results',
+        close: 'Close',
+        cancel: 'Cancel',
+        updated: 'Updated',
+        field: 'Field',
+        value: 'Value',
+        filters: 'Filters',
+        filter: 'Filter',
+        unavail: 'Data unavailable',
+        loading: 'Loading...',
+        deleted: 'Deleted',
+        numValidation: 'Please, insert a value bigger than zero!',
+        stringValidation: 'Please type something',
+        required: 'Field is required',
+        recPerPage: 'Records per page:'
+      }
     };
   }
 
-  generate(api, resource, dir) {
-    return resource.getParameters().then((params) => {
-      params = params.map((param) => ({
-        ...param,
-        ...this.getHtmlInputTypeFromField(param),
-      }));
+  generate(api, resource, dir, serverPath, module) {
+    this.generateFiles(api, resource, dir, null, module);
+    // return resource.getParameters().then((params) => {
+    //   params = params.map((param) => ({
+    //     ...param,
+    //     ...this.getHtmlInputTypeFromField(param),
+    //   }));
 
-      params = this.cleanupParams(params);
+    //   params = this.cleanupParams(params);
 
-      this.generateFiles(api, resource, dir, params);
-    });
+    //   this.generateFiles(api, resource, dir, params);
+    // });
   }
 
   // eslint-disable-next-line no-unused-vars
