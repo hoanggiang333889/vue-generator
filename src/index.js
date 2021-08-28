@@ -2,9 +2,6 @@
 
 import "isomorphic-fetch";
 import program from "commander";
-import parseHydraDocumentation from "@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation";
-import parseSwaggerDocumentation from "@api-platform/api-doc-parser/lib/swagger/parseSwaggerDocumentation";
-import parseOpenApi3Documentation from "@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation";
 import { version } from "../package.json";
 import generators from "./generators";
 
