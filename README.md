@@ -1,5 +1,5 @@
-# Vue Client Generator
-Generator to scaffold app with Create-Retrieve-Update-Delete features for any API documentation for:
+# API Platform Client Generator
+generator to scaffold app with Create-Retrieve-Update-Delete features for any API documentation for:
 
 * Nuxt.js
 * Vue.js
