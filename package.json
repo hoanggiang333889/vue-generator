@@ -1,0 +1,81 @@
+{
+  "name": "@giangmv/vue-generator",
+  "version": "0.1.12",
+  "description": "Generator apps built with Nuxt, Vue or Vuetify for any API documented",
+  "files": [
+    "*.md",
+    "docs/*.md",
+    "lib",
+    "src",
+    "templates"
+  ],
+  "main": "lib/index",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giangmv/vue-generator.git"
+  },
+  "homepage": "https://github.com/hoanggiang333889/vue-generator",
+  "bugs": {
+    "url": "https://github.com/hoanggiang333889/vue-generator"
+  },
+  "author": "giangmv",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-transform-flow-strip-types": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-eslint": "^10.0.0",
+    "babel-jest": "^26.0.0",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "husky": "^4.3.6",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.3",
+    "tmp": "^0.2.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "chalk": "^4.1.0",
+    "commander": "^6.2.1",
+    "handlebars": "^4.0.12",
+    "handlebars-helpers": "^0.10.0",
+    "isomorphic-fetch": "^3.0.0",
+    "mkdirp": "^1.0.4",
+    "prettier": "^2.2.1",
+    "sprintf-js": "^1.1.1"
+  },
+  "scripts": {
+    "test": "jest src",
+    "lint": "eslint src",
+    "fix": "eslint --fix src",
+    "eslint-check": "eslint-config-prettier src/index.js",
+    "build": "babel src -d lib --ignore '*.test.js'",
+    "watch": "babel --watch src -d lib --ignore '*.test.js'",
+    "test-gen": "rm -rf ./tmp && yarn build && ./lib/index.js https://demo.api-platform.com ./tmp/react -g react && ./lib/index.js https://demo.api-platform.com ./tmp/react-native -g react-native && ./lib/index.js https://demo.api-platform.com ./tmp/vue -g vue",
+    "test-gen-swagger": "rm -rf ./tmp && yarn build && ./lib/index.js  https://demo.api-platform.com/docs.json ./tmp/react -f swagger && ./lib/index.js https://demo.api-platform.com/docs.json ./tmp/react-native -g react-native -f swagger && ./lib/index.js https://demo.api-platform.com/docs.json ./tmp/vue -g vue -f swagger",
+    "test-gen-env": "rm -rf ./tmp && yarn build && API_PLATFORM_CLIENT_GENERATOR_ENTRYPOINT=https://demo.api-platform.com API_PLATFORM_CLIENT_GENERATOR_OUTPUT=./tmp ./lib/index.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js": "npm run lint"
+  },
+  "bin": {
+    "vue-generator": "./lib/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "hoanggjang333889@"
+  ]
+}
