@@ -1,6 +1,6 @@
 {
   "name": "@giangmv/vue-generator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generator apps built with Nuxt, Vue or Vuetify for any API documented",
   "files": [
     "*.md",
@@ -10,9 +10,14 @@
     "templates"
   ],
   "main": "lib/index",
-  "repository": "giangmv/vue-generator",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giangmv/vue-generator.git"
+  },
   "homepage": "https://github.com/hoanggiang333889/vue-generator",
-  "bugs": "https://github.com/hoanggiang333889/vue-generator",
+  "bugs": {
+    "url": "https://github.com/hoanggiang333889/vue-generator"
+  },
   "author": "giangmv",
   "license": "MIT",
   "devDependencies": {
@@ -66,9 +71,12 @@
     "src/**/*.js": "npm run lint"
   },
   "bin": {
-    "generate-api-platform-client": "./lib/index.js"
+    "generate-api-platform-client": "lib/index.js"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "keywords": [
+    "hoanggjang333889@"
+  ]
 }
