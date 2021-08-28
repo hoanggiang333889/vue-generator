@@ -1,6 +1,6 @@
 {
   "name": "@giangmv/vue-generator",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Generator apps built with Nuxt, Vue or Vuetify for any API documented",
   "files": [
     "*.md",
@@ -40,7 +40,6 @@
     "tmp": "^0.2.1"
   },
   "dependencies": {
-    "@api-platform/api-doc-parser": "^0.12.0",
     "@babel/runtime": "^7.0.0",
     "chalk": "^4.1.0",
     "commander": "^6.2.1",
