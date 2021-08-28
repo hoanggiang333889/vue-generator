@@ -3,7 +3,7 @@
 import "isomorphic-fetch";
 import program from "commander";
 import { version } from "../package.json";
-import generators from "./generators";
+import generators from "./generators.js";
 
 program
   .version(version)
