@@ -1,6 +1,6 @@
 {
   "name": "@giangmv/vue-generator",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Generator apps built with Nuxt, Vue or Vuetify for any API documented",
   "files": [
     "*.md",
@@ -34,7 +34,7 @@
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.3.0",
-    "husky": "^4.3.6",
+    "husky": "^4.3.8",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.3",
     "tmp": "^0.2.1"
@@ -78,5 +78,6 @@
   },
   "keywords": [
     "hoanggjang333889@"
-  ]
+  ],
+  "type": "module"
 }
