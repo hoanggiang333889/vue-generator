@@ -67,7 +67,7 @@ const module = program.module ? program.module : null;
 generator.checkDependencies(program.resourceName, serverPath);
 
 if(module) {
-  const api = new OpenAPIClientAxios({ definition: 'https://api-staging.bio-lojic.com/docs/api-docs.json' });
+  const api = new OpenAPIClientAxios({ definition: 'http://localhost:8000/docs/api-docs.json' });
   api.init().then((res) => {
     let data = res.api.document.components.schemas;
     for(var key in data) {
