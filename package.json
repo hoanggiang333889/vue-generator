@@ -41,12 +41,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+    "axios": "^0.21.1",
     "chalk": "^4.1.0",
     "commander": "^6.2.1",
     "handlebars": "^4.0.12",
     "handlebars-helpers": "^0.10.0",
     "isomorphic-fetch": "^3.0.0",
     "mkdirp": "^1.0.4",
+    "openapi-client-axios": "^4.1.0",
     "prettier": "^2.2.1",
     "sprintf-js": "^1.1.1"
   },

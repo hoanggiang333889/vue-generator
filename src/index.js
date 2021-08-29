@@ -4,6 +4,8 @@ import "isomorphic-fetch";
 import program from "commander";
 import { version } from "../package.json";
 import generators from "./generators";
+import OpenAPIClientAxios from 'openapi-client-axios';
+import chalk from "chalk";
 
 program
   .version(version)
@@ -48,8 +50,6 @@ program
   )
   .parse(process.argv);
 
-console.log(program.args[1]);
-
 const outputDirectory = '.'
 
 const generator = generators(program.generator)({
@@ -61,7 +61,45 @@ const resourceToGenerate = program.resource
   : null;
 const serverPath = program.serverPath ? program.serverPath.toLowerCase() : null;
 
+const module = program.module ? program.module : null;
 
 // check generator dependencies
 generator.checkDependencies(program.resourceName, serverPath);
-generator.generate('', [], outputDirectory, serverPath, program.module);
+
+if(module) {
+  const api = new OpenAPIClientAxios({ definition: 'https://api-staging.bio-lojic.com/docs/api-docs.json' });
+  api.init().then((res) => {
+    let data = res.api.document.components.schemas;
+    for(var key in data) {
+      if(key == module) {
+        generator.generate('', converProperties(data[key].properties), outputDirectory, serverPath, key);
+        console.log(chalk.green(`New ${key} added successfully.`));
+      }
+    }
+  });
+}
+
+function converProperties(properties) {
+  var data = [];
+  for(var key in properties) {
+    data.push({
+        name: key,
+        id: 'http://schema.org/isbn',
+        range: 'http://www.w3.org/2001/XMLSchema#string',
+        reference: null,
+        embedded: null,
+        required: false,
+        description: null,
+        maxCardinality: null,
+        deprecated: false,
+        type: properties[key].type,
+        index: 1,
+        total: 1,
+        isFirst: true,
+        isLast: false
+    })
+  }
+  return data;
+}
+
+
