@@ -22,6 +22,7 @@ export default class extends BaseGenerator {
 
       // services
       "services/api.js",
+      "services/login.js",
       "services/foo.js",
 
       // modules
@@ -153,7 +154,7 @@ export default class extends BaseGenerator {
       lc: lc,
       uc: module.toUpperCase(),
       fields: resource,
-      dateTypes: [ 'time', 'date', 'dateTime' ],
+      dateTypes: ['time', 'date', 'dateTime'],
       listContainsDate: true,
       paramsHaveRefs: false,
       parameters: resource,

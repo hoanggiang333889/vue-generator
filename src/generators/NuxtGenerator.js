@@ -16,6 +16,7 @@ export default class NuxtGenerator extends BaseVueGenerator {
       "components/Toolbar.vue",
       "components/foo/Filter.vue",
       "components/foo/Form.vue",
+      "components/auth/login/Form.vue",
 
       // mixins
       "mixins/create.js",
@@ -28,11 +29,13 @@ export default class NuxtGenerator extends BaseVueGenerator {
       "pages/foos/new.vue",
       "pages/foos/index.vue",
       "pages/foos/_id.vue",
+      "pages/auths/login/login.vue",
 
       // store
       "store/crud.js",
       "store/notifications.js",
       "store/foo.js",
+      "store/login.js",
     ]);
   }
 
