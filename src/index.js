@@ -88,7 +88,7 @@ function converProperties(properties) {
         range: 'http://www.w3.org/2001/XMLSchema#string',
         reference: null,
         embedded: null,
-        required: false,
+        required: true,
         description: null,
         maxCardinality: null,
         deprecated: false,

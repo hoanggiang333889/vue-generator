@@ -7,7 +7,7 @@ function wrap(cl) {
     new cl({ hydraPrefix, templateDirectory });
 }
 
-export default function generators(generator = "react") {
+export default function generators(generator = "nuxt") {
   switch (generator) {
     case "nuxt":
       return wrap(NuxtGenerator);
